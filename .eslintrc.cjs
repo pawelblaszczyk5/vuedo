@@ -4,8 +4,8 @@ require('@rushstack/eslint-patch/modern-module-resolution');
 module.exports = {
 	root: true,
 	extends: [
-		'plugin:vue/vue3-essential',
 		'eslint:recommended',
+		'plugin:vue/vue3-recommended',
 		'@vue/eslint-config-typescript/recommended',
 		'plugin:unicorn/recommended',
 		'plugin:import/recommended',
@@ -53,6 +53,18 @@ module.exports = {
 		'unicorn/prefer-query-selector': 'off',
 		'unicorn/prefer-type-error': 'off',
 		'unicorn/prefer-top-level-await': 'off',
+		'vue/html-self-closing': [
+			'error',
+			{
+				html: {
+					void: 'never',
+					normal: 'always',
+					component: 'always',
+				},
+				svg: 'always',
+				math: 'always',
+			},
+		],
 	},
 	parserOptions: {
 		ecmaVersion: 'latest',
@@ -69,14 +81,6 @@ module.exports = {
 		},
 	},
 	overrides: [
-		{
-			extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking', 'plugin:@typescript-eslint/strict'],
-			files: ['*.ts', '*.vue'],
-			parserOptions: {
-				project: ['./tsconfig.json', './tsconfig.config.json'],
-			},
-			parser: require.resolve('vue-eslint-parser'),
-		},
 		{
 			files: ['*.vue'],
 			globals: {
