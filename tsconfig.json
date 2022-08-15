@@ -1,0 +1,22 @@
+{
+	"extends": "@tsconfig/strictest/tsconfig.json",
+	"include": ["src/**/*", "src/**/*.vue"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"~/*": ["./src/*"]
+		},
+		"jsx": "preserve",
+		"preserveValueImports": true,
+		"importsNotUsedAsValues": "error",
+		"isolatedModules": true,
+		"target": "ESNext",
+		"skipLibCheck": true,
+		"moduleResolution": "node"
+	},
+	"references": [
+		{
+			"path": "./tsconfig.config.json"
+		}
+	]
+}
