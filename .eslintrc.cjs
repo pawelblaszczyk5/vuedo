@@ -58,7 +58,7 @@ module.exports = {
 			'error',
 			{
 				html: {
-					void: 'never',
+					void: 'always',
 					normal: 'always',
 					component: 'always',
 				},
@@ -66,6 +66,8 @@ module.exports = {
 				math: 'always',
 			},
 		],
+		'vue/padding-line-between-blocks': ['error', 'always'],
+		'vue/no-setup-props-destructure': 'off',
 	},
 	parserOptions: {
 		ecmaVersion: 'latest',
