@@ -12,7 +12,8 @@
 		"isolatedModules": true,
 		"target": "ESNext",
 		"skipLibCheck": true,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"types": ["unplugin-icons/types/vue"]
 	},
 	"references": [
 		{

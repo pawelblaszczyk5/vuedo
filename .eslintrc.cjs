@@ -26,6 +26,7 @@ module.exports = {
 				alphabetize: { order: 'asc', caseInsensitive: true },
 			},
 		],
+		'import/no-unresolved': ['error', { ignore: ['~icons'] }],
 		'no-restricted-imports': [
 			'error',
 			{
