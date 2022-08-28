@@ -13,7 +13,7 @@
 		"target": "ESNext",
 		"skipLibCheck": true,
 		"moduleResolution": "node",
-		"types": ["unplugin-icons/types/vue"]
+		"types": []
 	},
 	"references": [
 		{
