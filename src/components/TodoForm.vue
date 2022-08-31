@@ -31,7 +31,7 @@
 				required
 			/>
 			<button
-				class="bg-emerald-400 px-6 text-zinc-800 ring-inset ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
+				class="font-500 bg-emerald-400 px-6 text-zinc-800 ring-inset ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
 			>
 				Add
 			</button>
