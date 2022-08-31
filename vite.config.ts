@@ -9,7 +9,10 @@ export default defineConfig({
 	plugins: [
 		vue({ reactivityTransform: true }),
 		Unocss({
-			presets: [presetIcons(), presetWind()],
+			presets: [
+				presetIcons({ extraProperties: { display: 'inline-block', 'vertical-align': 'middle' } }),
+				presetWind(),
+			],
 		}),
 	],
 	resolve: {
