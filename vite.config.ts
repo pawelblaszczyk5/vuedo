@@ -10,7 +10,12 @@ export default defineConfig({
 		vue({ reactivityTransform: true }),
 		Unocss({
 			presets: [
-				presetIcons({ extraProperties: { display: 'inline-block', 'vertical-align': 'middle' } }),
+				presetIcons({
+					extraProperties: {
+						display: 'inline-block',
+						'vertical-align': 'middle',
+					},
+				}),
 				presetWind(),
 			],
 		}),
