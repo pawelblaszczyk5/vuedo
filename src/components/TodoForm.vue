@@ -6,7 +6,6 @@
 
 		if (!trimmedTodoText) return;
 
-		console.log(trimmedTodoText);
 		todoText = '';
 	};
 </script>
