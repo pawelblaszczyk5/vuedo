@@ -16,9 +16,6 @@
 		"moduleResolution": "node",
 		"types": []
 	},
-	"vueCompilerOptions": {
-		"strictTemplates": true
-	},
 	"references": [
 		{
 			"path": "./tsconfig.config.json"
