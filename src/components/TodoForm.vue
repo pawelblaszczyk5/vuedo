@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+	import { useTodoStore } from '~/utils/todoStore';
+
+	const { createTodo } = useTodoStore();
+
 	let todoText = $ref('');
 
 	const handleSubmit = () => {
@@ -7,6 +11,7 @@
 		if (!trimmedTodoText) return;
 
 		todoText = '';
+		createTodo(trimmedTodoText);
 	};
 </script>
 
