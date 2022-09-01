@@ -17,14 +17,13 @@
 
 <template>
 	<form
-		class="flex w-full max-w-xs flex-col"
 		novalidate
 		autocomplete="off"
 		@submit.prevent="handleSubmit"
 	>
 		<label
 			for="todo-text"
-			class="pb-1 text-sm"
+			class="block pb-1 text-sm"
 			>Todo text</label
 		>
 		<div class="flex">

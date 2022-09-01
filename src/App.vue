@@ -4,14 +4,18 @@
 </script>
 
 <template>
-	<main class="flex flex-col items-center justify-center gap-4 p-8">
-		<h1 class="font-200 flex items-center gap-2 text-4xl">
-			TODOs
-			<i
-				aria-hidden
-				class="i-bi-card-checklist text-emerald-400"
-			/>
-		</h1>
+	<h1
+		class="font-200 flex items-center justify-center gap-2 text-center text-5xl"
+	>
+		TODOs
+		<i
+			aria-hidden
+			class="i-bi-card-checklist text-emerald-400"
+		/>
+	</h1>
+	<main
+		class="mx-auto my-6 flex w-full max-w-xs flex-col items-center justify-center gap-4"
+	>
 		<TodoForm />
 		<TodoList />
 	</main>
