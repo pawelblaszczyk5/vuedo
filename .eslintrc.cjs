@@ -69,6 +69,7 @@ module.exports = {
 		'unicorn/prefer-query-selector': 'off',
 		'unicorn/prefer-type-error': 'off',
 		'unicorn/prefer-top-level-await': 'off',
+		'unicorn/no-keyword-prefix': 'off',
 		'vue/html-self-closing': [
 			'error',
 			{
