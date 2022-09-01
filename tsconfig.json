@@ -11,9 +11,13 @@
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
 		"target": "ESNext",
+		"module": "ESNext",
 		"skipLibCheck": true,
 		"moduleResolution": "node",
 		"types": []
+	},
+	"vueCompilerOptions": {
+		"strictTemplates": true
 	},
 	"references": [
 		{
