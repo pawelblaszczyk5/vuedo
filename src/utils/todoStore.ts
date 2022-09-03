@@ -12,8 +12,13 @@ export type TodoId = Todo['id'];
 export type TodoText = Todo['text'];
 export type TodoStatus = Todo['status'];
 
+export type SortMethod = 'desc' | 'asc';
+export type FilterMethod = 'all' | TodoStatus;
+
 export const useTodoStore = defineStore('counter', () => {
 	let todos = $ref<Array<Todo>>([]);
+	let sortMethod = $ref<SortMethod>('asc');
+	let filterMethod = $ref<FilterMethod>('all');
 
 	const createTodo = (text: TodoText) =>
 		void todos.push({
@@ -31,11 +36,25 @@ export const useTodoStore = defineStore('counter', () => {
 		todoToModify.status = newStatus;
 	};
 
-	const removeTodo = (idToRemove: TodoId) => {
-		todos = todos.filter(({ id }) => id !== idToRemove);
-	};
+	const removeTodo = (idToRemove: TodoId) =>
+		void (todos = todos.filter(({ id }) => id !== idToRemove));
 
-	return { todos: $$(todos), createTodo, changeTodoStatus, removeTodo };
+	const changeSortMethod = (newSortMethod: SortMethod) =>
+		void (sortMethod = newSortMethod);
+
+	const changeFilterMethod = (newFilterMethod: FilterMethod) =>
+		void (filterMethod = newFilterMethod);
+
+	return {
+		todos: $$(todos),
+		sortMethod: $$(sortMethod),
+		filterMethod: $$(filterMethod),
+		createTodo,
+		changeTodoStatus,
+		removeTodo,
+		changeSortMethod,
+		changeFilterMethod,
+	};
 });
 
 if (import.meta.hot) {

@@ -8,7 +8,10 @@
 </script>
 
 <template>
-	<ul class="flex flex-col gap-3">
+	<ul
+		v-if="todos.length > 0"
+		class="flex flex-col gap-3"
+	>
 		<TodoItem
 			v-for="todo in todos"
 			:key="todo.id"

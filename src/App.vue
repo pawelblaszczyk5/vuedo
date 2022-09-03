@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 	import TodoForm from '~/components/TodoForm.vue';
 	import TodoList from '~/components/TodoList.vue';
+	import TodoNav from '~/components/TodoNav.vue';
 </script>
 
 <template>
@@ -13,8 +14,11 @@
 			class="i-bi-card-checklist text-emerald-400"
 		/>
 	</h1>
-	<main class="mx-auto my-6 flex w-full max-w-xs flex-col justify-center gap-4">
+	<main
+		class="mx-auto my-6 flex w-full max-w-[22rem] flex-col justify-center gap-4"
+	>
 		<TodoForm />
 		<TodoList />
+		<TodoNav />
 	</main>
 </template>
