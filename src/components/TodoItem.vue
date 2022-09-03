@@ -24,7 +24,14 @@
 
 <template>
 	<li class="b-2 flex items-center gap-1 border-emerald-400 py-2 px-3">
-		<span class="block w-full truncate">{{ todo.text }}</span>
+		<span
+			class="block w-full truncate"
+			:class="{
+				'font-200 text-zinc-300 line-through decoration-2':
+					todo.status === 'completed',
+			}"
+			>{{ todo.text }}</span
+		>
 		<button
 			:aria-label="changeStatusButtonAriaLabel"
 			class="i-bi-check w-8 text-emerald-400"
