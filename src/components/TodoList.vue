@@ -10,6 +10,7 @@
 <template>
 	<ul
 		v-if="todos.length > 0"
+		v-auto-animate
 		class="flex flex-col gap-3"
 	>
 		<TodoItem

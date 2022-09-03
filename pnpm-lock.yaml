@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@iconify/json': ^2.1.93
   '@rushstack/eslint-patch': ^1.1.4
   '@tsconfig/strictest': ^1.0.1
@@ -29,6 +30,7 @@ specifiers:
   vue-tsc: ^0.39.5
 
 dependencies:
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@unocss/reset': 0.45.13
   pinia: 2.0.21_j6bzmzd4ujpabbp5objtwxyjp4
   uuid: 8.3.2
@@ -143,6 +145,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@formkit/auto-animate/1.0.0-beta.3:
+    resolution: {integrity: sha512-glsi+ytwQpxT/Ctr9GtcIfVr4dO6mJ04mQbNU8MFSdCdqMopHtyfU5Fib0+9lNFIeR0luY4/0NW95/2R5pKsag==}
+    dev: false
 
   /@humanwhocodes/config-array/0.10.4:
     resolution: {integrity: sha512-mXAIHxZT3Vcpg83opl1wGlVZ9xydbfZO3r5YfRSH6Gpp2J/PfdBP0wbDa2sO6/qRbcalpoevVyW6A/fI6LfeMw==}
