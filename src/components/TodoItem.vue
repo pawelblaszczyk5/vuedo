@@ -29,7 +29,7 @@
 			:aria-label="changeStatusButtonAriaLabel"
 			class="i-bi-check w-8 text-emerald-400"
 			:class="{
-				'i-bi-slash-circle text-lg': todo.status === 'completed',
+				'i-bi-dash text-2xl': todo.status === 'completed',
 				'i-bi-check text-2xl': todo.status === 'uncompleted',
 			}"
 			@click="handleStatusChange"
