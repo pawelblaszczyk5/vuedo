@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { v4 as uuid } from 'uuid';
 
-interface Todo {
+export interface Todo {
 	text: string;
 	id: string;
 	createdAt: number;

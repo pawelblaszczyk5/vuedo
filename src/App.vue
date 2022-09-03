@@ -13,9 +13,7 @@
 			class="i-bi-card-checklist text-emerald-400"
 		/>
 	</h1>
-	<main
-		class="mx-auto my-6 flex w-full max-w-xs flex-col items-center justify-center gap-4"
-	>
+	<main class="mx-auto my-6 flex w-full max-w-xs flex-col justify-center gap-4">
 		<TodoForm />
 		<TodoList />
 	</main>
