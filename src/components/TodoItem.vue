@@ -25,10 +25,9 @@
 <template>
 	<li class="b-2 flex items-center gap-1 border-emerald-400 py-2 px-3">
 		<span
-			class="block w-full truncate"
+			class="block w-full truncate decoration-1"
 			:class="{
-				'font-200 text-zinc-300 line-through decoration-2':
-					todo.status === 'completed',
+				'font-200 text-zinc-300 line-through': todo.status === 'completed',
 			}"
 			>{{ todo.text }}</span
 		>
