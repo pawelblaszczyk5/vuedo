@@ -8,12 +8,12 @@ export interface Todo {
 	status: 'completed' | 'uncompleted';
 }
 
-type TodoId = Todo['id'];
-type TodoText = Todo['text'];
-type TodoStatus = Todo['status'];
+export type TodoId = Todo['id'];
+export type TodoText = Todo['text'];
+export type TodoStatus = Todo['status'];
 
 export const useTodoStore = defineStore('counter', () => {
-	const todos = $ref<Array<Todo>>([]);
+	let todos = $ref<Array<Todo>>([]);
 
 	const createTodo = (text: TodoText) =>
 		void todos.push({
@@ -31,7 +31,11 @@ export const useTodoStore = defineStore('counter', () => {
 		todoToModify.status = newStatus;
 	};
 
-	return { todos: $$(todos), createTodo, changeTodoStatus };
+	const removeTodo = (idToRemove: TodoId) => {
+		todos = todos.filter(({ id }) => id !== idToRemove);
+	};
+
+	return { todos: $$(todos), createTodo, changeTodoStatus, removeTodo };
 });
 
 if (import.meta.hot) {
