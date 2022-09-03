@@ -17,8 +17,8 @@
 		label: string;
 	}> = [
 		{ filterMethod: 'all', label: 'All' },
-		{ filterMethod: 'completed', label: 'Active' },
-		{ filterMethod: 'uncompleted', label: 'Uncompleted' },
+		{ filterMethod: 'uncompleted', label: 'Active' },
+		{ filterMethod: 'completed', label: 'Completed' },
 	];
 
 	const sortMethodButtonAriaLabel = $computed(
@@ -52,8 +52,8 @@
 			><i
 				class="text-xl"
 				:class="{
-					'i-bi-sort-down': sortMethod === 'asc',
-					'i-bi-sort-up': sortMethod === 'desc',
+					'i-bi-sort-numeric-down': sortMethod === 'asc',
+					'i-bi-sort-numeric-up': sortMethod === 'desc',
 				}"
 		/></NavButton>
 	</nav>

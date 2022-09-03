@@ -1,5 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { v4 as uuid } from 'uuid';
+import { computed } from 'vue';
 
 export interface Todo {
 	text: string;
@@ -45,8 +46,25 @@ export const useTodoStore = defineStore('counter', () => {
 	const changeFilterMethod = (newFilterMethod: FilterMethod) =>
 		void (filterMethod = newFilterMethod);
 
+	const todosToDisplay = computed(() => {
+		const todosToDisplay = todos.filter(todo => {
+			if (filterMethod === 'all') return true;
+
+			return todo.status === filterMethod;
+		});
+
+		todosToDisplay.sort((firstTodo, secondTodo) => {
+			if (sortMethod === 'asc')
+				return firstTodo.createdAt - secondTodo.createdAt;
+
+			return secondTodo.createdAt - firstTodo.createdAt;
+		});
+
+		return todosToDisplay;
+	});
+
 	return {
-		todos: $$(todos),
+		todos: $$(todosToDisplay),
 		sortMethod: $$(sortMethod),
 		filterMethod: $$(filterMethod),
 		createTodo,
