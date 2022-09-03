@@ -34,17 +34,26 @@
 		>
 		<button
 			:aria-label="changeStatusButtonAriaLabel"
-			class="i-bi-check w-8 text-emerald-400"
-			:class="{
-				'i-bi-dash text-2xl': todo.status === 'completed',
-				'i-bi-check text-2xl': todo.status === 'uncompleted',
-			}"
+			class="w-8 text-emerald-400 ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
 			@click="handleStatusChange"
-		/>
+		>
+			<i
+				aria-hidden
+				:class="{
+					'i-bi-dash text-2xl': todo.status === 'completed',
+					'i-bi-check text-2xl': todo.status === 'uncompleted',
+				}"
+			/>
+		</button>
 		<button
 			aria-label="Remove todo"
-			class="i-bi-x w-8 text-2xl text-emerald-400"
+			class="w-8 text-emerald-400 ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
 			@click="handleRemove"
-		/>
+		>
+			<i
+				aria-hidden
+				class="i-bi-x text-2xl"
+			/>
+		</button>
 	</li>
 </template>
