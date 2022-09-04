@@ -1,18 +1,50 @@
 <script lang="ts" setup>
+	import { watchEffect } from 'vue';
+
 	import { useTodoStore } from '~/utils/todoStore';
 
-	const { createTodo } = useTodoStore();
+	const { createTodo, isTodoExistingAlready } = useTodoStore();
 
 	let todoText = $ref('');
+	let error = $ref('');
+	let triedToSubmit = $ref(false);
+
+	const hasError = $computed(() => Boolean(error));
+
+	const validateTodoText = () => {
+		todoText = todoText.trim();
+
+		if (!todoText) {
+			error = "Todo can't be empty";
+			return;
+		}
+
+		if (isTodoExistingAlready(todoText)) {
+			error = 'Todo exists already';
+			return;
+		}
+
+		error = '';
+	};
 
 	const handleSubmit = () => {
-		const trimmedTodoText = todoText.trim();
+		validateTodoText();
+		triedToSubmit = true;
 
-		if (!trimmedTodoText) return;
+		if (hasError) {
+			return;
+		}
 
+		createTodo(todoText);
 		todoText = '';
-		createTodo(trimmedTodoText);
+		triedToSubmit = false;
 	};
+
+	watchEffect(() => {
+		if (!hasError && !triedToSubmit) return;
+
+		validateTodoText();
+	});
 </script>
 
 <template>
@@ -34,6 +66,8 @@
 				name="todo-text"
 				type="text"
 				required
+				:aria-invalid="hasError"
+				:aria-describedby="hasError ? 'todo-text-error' : ''"
 			/>
 			<button
 				class="font-500 bg-emerald-400 px-6 text-zinc-800 ring-inset ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
@@ -41,5 +75,11 @@
 				Add
 			</button>
 		</div>
+		<span
+			v-if="hasError"
+			id="todo-text-error"
+			class="text-xs text-fuchsia-400"
+			>{{ error }}</span
+		>
 	</form>
 </template>

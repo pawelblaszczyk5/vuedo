@@ -74,7 +74,7 @@
 		<span class="mr-2 inline-block">{{ infoText }}</span>
 		<button
 			v-if="todosCompletedCount > 0"
-			class="inline-block text-emerald-400"
+			class="inline-block text-emerald-400 ring-fuchsia-400 ring-offset-2 ring-offset-zinc-800 focus-visible:outline-none focus-visible:ring-2"
 			@click="clearAllCompletedTodos"
 		>
 			Clear all completed

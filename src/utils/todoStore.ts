@@ -100,6 +100,9 @@ export const useTodoStore = defineStore('counter', () => {
 		persistTodos();
 	};
 
+	const isTodoExistingAlready = (todoText: TodoText) =>
+		todos.some(todo => todo.text === todoText);
+
 	const todosToDisplay = $computed(() => {
 		const todosToDisplay = todos.filter(todo => {
 			if (filterMethod === 'all') return true;
@@ -143,6 +146,7 @@ export const useTodoStore = defineStore('counter', () => {
 		changeSortMethod,
 		changeFilterMethod,
 		clearAllCompletedTodos,
+		isTodoExistingAlready,
 	};
 });
 
