@@ -47,7 +47,6 @@
 		>
 		<NavButton
 			:active="true"
-			:with-icon="true"
 			:aria-label="sortMethodButtonAriaLabel"
 			class="px-3"
 			@click="handleSortMethodChange"
