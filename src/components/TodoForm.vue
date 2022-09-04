@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { watchEffect } from 'vue';
+	import { watch } from 'vue';
 
 	import { useTodoStore } from '~/utils/todoStore';
 
@@ -40,7 +40,7 @@
 		triedToSubmit = false;
 	};
 
-	watchEffect(() => {
+	watch($$(todoText), () => {
 		if (!hasError && !triedToSubmit) return;
 
 		validateTodoText();
