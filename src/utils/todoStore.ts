@@ -95,6 +95,11 @@ export const useTodoStore = defineStore('counter', () => {
 	const changeFilterMethod = (newFilterMethod: FilterMethod) =>
 		void (filterMethod = newFilterMethod);
 
+	const clearAllCompletedTodos = () => {
+		todos = todos.filter(todo => todo.status !== 'completed');
+		persistTodos();
+	};
+
 	const todosToDisplay = $computed(() => {
 		const todosToDisplay = todos.filter(todo => {
 			if (filterMethod === 'all') return true;
@@ -118,15 +123,26 @@ export const useTodoStore = defineStore('counter', () => {
 		return todosToDisplay;
 	});
 
+	const todosLeftCount = $computed(
+		() => todos.filter(todo => todo.status !== 'completed').length,
+	);
+
+	const todosCompletedCount = $computed(
+		() => todos.filter(todo => todo.status === 'completed').length,
+	);
+
 	return {
 		todos: $$(todosToDisplay),
 		sortMethod: $$(sortMethod),
 		filterMethod: $$(filterMethod),
+		todosLeftCount: $$(todosLeftCount),
+		todosCompletedCount: $$(todosCompletedCount),
 		createTodo,
 		changeTodoStatus,
 		removeTodo,
 		changeSortMethod,
 		changeFilterMethod,
+		clearAllCompletedTodos,
 	};
 });
 
