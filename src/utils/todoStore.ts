@@ -14,7 +14,7 @@ const todoArraySchema = z.array(
 
 const todoSchema = todoArraySchema.element;
 
-type Todo = z.infer<typeof todoSchema>;
+export type Todo = z.infer<typeof todoSchema>;
 
 export type TodoId = Todo['id'];
 export type TodoText = Todo['text'];
