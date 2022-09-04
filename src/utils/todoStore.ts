@@ -92,6 +92,12 @@ export const useTodoStore = defineStore('counter', () => {
 		});
 
 		todosToDisplay.sort((firstTodo, secondTodo) => {
+			if (firstTodo.status !== secondTodo.status)
+				return (
+					Number(firstTodo.status === 'completed') -
+					Number(secondTodo.status === 'completed')
+				);
+
 			if (sortMethod === 'asc')
 				return firstTodo.createdAt - secondTodo.createdAt;
 
