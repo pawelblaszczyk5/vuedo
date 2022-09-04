@@ -1,5 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { v4 as uuid } from 'uuid';
+import { onMounted } from 'vue';
 import { z } from 'zod';
 
 const todoArraySchema = z.array(
@@ -39,15 +40,25 @@ export const useTodoStore = defineStore('counter', () => {
 	let sortMethod = $ref<SortMethod>('asc');
 	let filterMethod = $ref<FilterMethod>('all');
 
-	try {
-		const savedTodos = todoArraySchema.parse(
-			safeJsonParse(localStorage.getItem(TODOS_LOCAL_STORAGE_KEY)),
-		);
+	const getTodosFromLocalStorage = () => {
+		try {
+			const savedTodos = todoArraySchema.parse(
+				safeJsonParse(localStorage.getItem(TODOS_LOCAL_STORAGE_KEY)),
+			);
 
-		todos = savedTodos;
-	} catch {
-		localStorage.removeItem(TODOS_LOCAL_STORAGE_KEY);
-	}
+			todos = savedTodos;
+		} catch {
+			localStorage.removeItem(TODOS_LOCAL_STORAGE_KEY);
+		}
+	};
+
+	onMounted(() => {
+		getTodosFromLocalStorage();
+		window.addEventListener('storage', getTodosFromLocalStorage);
+
+		return () =>
+			window.removeEventListener('storage', getTodosFromLocalStorage);
+	});
 
 	const persistTodos = () => {
 		localStorage.setItem(TODOS_LOCAL_STORAGE_KEY, JSON.stringify(todos));
