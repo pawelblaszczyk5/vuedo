@@ -1,12 +1,19 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { v4 as uuid } from 'uuid';
+import { z } from 'zod';
 
-export interface Todo {
-	text: string;
-	id: string;
-	createdAt: number;
-	status: 'completed' | 'uncompleted';
-}
+const todoArraySchema = z.array(
+	z.object({
+		text: z.string(),
+		id: z.string(),
+		createdAt: z.number(),
+		status: z.enum(['completed', 'uncompleted']),
+	}),
+);
+
+const todoSchema = todoArraySchema.element;
+
+type Todo = z.infer<typeof todoSchema>;
 
 export type TodoId = Todo['id'];
 export type TodoText = Todo['text'];
@@ -15,18 +22,47 @@ export type TodoStatus = Todo['status'];
 export type SortMethod = 'desc' | 'asc';
 export type FilterMethod = 'all' | TodoStatus;
 
+const TODOS_LOCAL_STORAGE_KEY = 'todos-storage';
+
+const safeJsonParse = (stringToParse?: string | null) => {
+	try {
+		const parsedValue = JSON.parse(stringToParse ?? '') as unknown;
+
+		return parsedValue;
+	} catch {
+		return null;
+	}
+};
+
 export const useTodoStore = defineStore('counter', () => {
 	let todos = $ref<Array<Todo>>([]);
 	let sortMethod = $ref<SortMethod>('asc');
 	let filterMethod = $ref<FilterMethod>('all');
 
-	const createTodo = (text: TodoText) =>
-		void todos.push({
+	try {
+		const savedTodos = todoArraySchema.parse(
+			safeJsonParse(localStorage.getItem(TODOS_LOCAL_STORAGE_KEY)),
+		);
+
+		todos = savedTodos;
+	} catch {
+		localStorage.removeItem(TODOS_LOCAL_STORAGE_KEY);
+	}
+
+	const persistTodos = () => {
+		localStorage.setItem(TODOS_LOCAL_STORAGE_KEY, JSON.stringify(todos));
+	};
+
+	const createTodo = (text: TodoText) => {
+		todos.push({
 			text,
 			id: uuid(),
 			createdAt: Date.now(),
 			status: 'uncompleted',
 		});
+
+		persistTodos();
+	};
 
 	const changeTodoStatus = (idToChange: TodoId, newStatus: TodoStatus) => {
 		const todoToModify = todos.find(({ id }) => idToChange === id);
@@ -34,10 +70,13 @@ export const useTodoStore = defineStore('counter', () => {
 		if (!todoToModify) return;
 
 		todoToModify.status = newStatus;
+		persistTodos();
 	};
 
-	const removeTodo = (idToRemove: TodoId) =>
-		void (todos = todos.filter(({ id }) => id !== idToRemove));
+	const removeTodo = (idToRemove: TodoId) => {
+		todos = todos.filter(({ id }) => id !== idToRemove);
+		persistTodos();
+	};
 
 	const changeSortMethod = (newSortMethod: SortMethod) =>
 		void (sortMethod = newSortMethod);
