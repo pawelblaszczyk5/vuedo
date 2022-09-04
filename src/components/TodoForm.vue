@@ -14,12 +14,12 @@
 
 		todoText = input.value;
 
-		if (!hasError && !triedToSubmit) return;
-
 		validateTodoText();
 	};
 
 	const validateTodoText = () => {
+		if (!hasError && !triedToSubmit) return;
+
 		if (!todoText) {
 			error = "Todo can't be empty";
 			return;
@@ -35,8 +35,8 @@
 
 	const handleSubmit = () => {
 		todoText = todoText.trim();
-		validateTodoText();
 		triedToSubmit = true;
+		validateTodoText();
 
 		if (hasError) {
 			return;
@@ -70,6 +70,7 @@
 				:aria-invalid="hasError"
 				:aria-describedby="hasError ? 'todo-text-error' : ''"
 				@input="handleTodoTextInput"
+				@focus="validateTodoText"
 			/>
 			<button
 				class="font-500 bg-emerald-400 px-6 text-zinc-800 ring-inset ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
