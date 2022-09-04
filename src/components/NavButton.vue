@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	const { active, withIcon = false } = defineProps<{
+	const { active } = defineProps<{
 		active: boolean;
 		withIcon?: boolean;
 	}>();
@@ -11,8 +11,6 @@
 		:class="{
 			'bg-emerald-400 text-zinc-800': active,
 			'bg-zinc-800 text-zinc-200 ': !active,
-			'px-5': !withIcon,
-			'px-3': withIcon,
 		}"
 	>
 		<slot />

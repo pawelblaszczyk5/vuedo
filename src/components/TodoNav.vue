@@ -36,11 +36,12 @@
 </script>
 
 <template>
-	<nav class="flex justify-between">
+	<nav class="flex flex-wrap gap-2">
 		<NavButton
 			v-for="button in filteringButtonsConfig"
 			:key="button.filterMethod"
 			:active="filterMethod === button.filterMethod"
+			class="flex-1 px-5"
 			@click="() => changeFilterMethod(button.filterMethod)"
 			>{{ button.label }}</NavButton
 		>
@@ -48,6 +49,7 @@
 			:active="true"
 			:with-icon="true"
 			:aria-label="sortMethodButtonAriaLabel"
+			class="px-3"
 			@click="handleSortMethodChange"
 			><i
 				class="text-xl"
