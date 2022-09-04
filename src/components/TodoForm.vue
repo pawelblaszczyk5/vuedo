@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-	import { watch } from 'vue';
-
 	import { useTodoStore } from '~/utils/todoStore';
 
 	const { createTodo, isTodoExistingAlready } = useTodoStore();
@@ -11,9 +9,17 @@
 
 	const hasError = $computed(() => Boolean(error));
 
-	const validateTodoText = () => {
-		todoText = todoText.trim();
+	const handleTodoTextInput = (event: Event) => {
+		const input = event.currentTarget as HTMLInputElement;
 
+		todoText = input.value;
+
+		if (!hasError && !triedToSubmit) return;
+
+		validateTodoText();
+	};
+
+	const validateTodoText = () => {
 		if (!todoText) {
 			error = "Todo can't be empty";
 			return;
@@ -28,6 +34,7 @@
 	};
 
 	const handleSubmit = () => {
+		todoText = todoText.trim();
 		validateTodoText();
 		triedToSubmit = true;
 
@@ -39,12 +46,6 @@
 		todoText = '';
 		triedToSubmit = false;
 	};
-
-	watch($$(todoText), () => {
-		if (!hasError && !triedToSubmit) return;
-
-		validateTodoText();
-	});
 </script>
 
 <template>
@@ -61,13 +62,14 @@
 		<div class="flex">
 			<input
 				id="todo-text"
-				v-model="todoText"
+				:value="todoText"
 				class="w-full border-2 border-emerald-400 bg-zinc-800 p-2 text-sm focus-visible:border-fuchsia-400 focus-visible:outline-none"
 				name="todo-text"
 				type="text"
 				required
 				:aria-invalid="hasError"
 				:aria-describedby="hasError ? 'todo-text-error' : ''"
+				@input="handleTodoTextInput"
 			/>
 			<button
 				class="font-500 bg-emerald-400 px-6 text-zinc-800 ring-inset ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
