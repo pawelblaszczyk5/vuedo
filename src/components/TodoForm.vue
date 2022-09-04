@@ -49,16 +49,8 @@
 </script>
 
 <template>
-	<form
-		novalidate
-		autocomplete="off"
-		@submit.prevent="handleSubmit"
-	>
-		<label
-			for="todo-text"
-			class="block pb-1 text-sm"
-			>Todo text</label
-		>
+	<form novalidate autocomplete="off" @submit.prevent="handleSubmit">
+		<label for="todo-text" class="block pb-1 text-sm">Todo text</label>
 		<div class="flex">
 			<input
 				id="todo-text"
@@ -78,11 +70,6 @@
 				Add
 			</button>
 		</div>
-		<span
-			v-if="hasError"
-			id="todo-text-error"
-			class="text-xs text-fuchsia-400"
-			>{{ error }}</span
-		>
+		<span v-if="hasError" id="todo-text-error" class="text-xs text-fuchsia-400">{{ error }}</span>
 	</form>
 </template>

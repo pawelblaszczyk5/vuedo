@@ -2,18 +2,13 @@
 	import { storeToRefs } from 'pinia';
 
 	import NavButton from '~/components/NavButton.vue';
-	import {
-		useTodoStore,
-		type FilterMethod,
-		type SortMethod,
-	} from '~/utils/todoStore';
+	import { useTodoStore, type FilterMethod, type SortMethod } from '~/utils/todoStore';
 
 	const { sortMethod, filterMethod, todosLeftCount, todosCompletedCount } = $(
 		storeToRefs(useTodoStore()),
 	);
 
-	const { changeFilterMethod, changeSortMethod, clearAllCompletedTodos } =
-		useTodoStore();
+	const { changeFilterMethod, changeSortMethod, clearAllCompletedTodos } = useTodoStore();
 
 	const filteringButtonsConfig: Array<{
 		filterMethod: FilterMethod;
@@ -25,10 +20,7 @@
 	];
 
 	const sortMethodButtonAriaLabel = $computed(
-		() =>
-			`Sort by creation date ${
-				sortMethod === 'asc' ? 'descending' : 'ascending'
-			}`,
+		() => `Sort by creation date ${sortMethod === 'asc' ? 'descending' : 'ascending'}`,
 	);
 
 	const infoText = $computed(() => {
@@ -36,9 +28,7 @@
 			return 'Start by adding some todo!';
 		}
 
-		return todosLeftCount === 0
-			? 'Congrats! All todos done'
-			: `${todosLeftCount} todos left`;
+		return todosLeftCount === 0 ? 'Congrats! All todos done' : `${todosLeftCount} todos left`;
 	});
 
 	const handleSortMethodChange = () => {
@@ -58,10 +48,7 @@
 			@click="() => changeFilterMethod(button.filterMethod)"
 			>{{ button.label }}</NavButton
 		>
-		<NavButton
-			:aria-label="sortMethodButtonAriaLabel"
-			class="px-3"
-			@click="handleSortMethodChange"
+		<NavButton :aria-label="sortMethodButtonAriaLabel" class="px-3" @click="handleSortMethodChange"
 			><i
 				class="text-xl"
 				:class="{

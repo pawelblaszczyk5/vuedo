@@ -20,23 +20,11 @@ module.exports = {
 		],
 		'@typescript-eslint/array-type': ['error', { default: 'generic' }],
 		'@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-		'@typescript-eslint/no-redeclare': [
-			'error',
-			{ ignoreDeclarationMerge: false },
-		],
+		'@typescript-eslint/no-redeclare': ['error', { ignoreDeclarationMerge: false }],
 		'import/order': [
 			'error',
 			{
-				groups: [
-					'type',
-					'builtin',
-					'external',
-					'internal',
-					'parent',
-					'sibling',
-					'index',
-					'object',
-				],
+				groups: ['type', 'builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
 				'newlines-between': 'always',
 				alphabetize: { order: 'asc', caseInsensitive: true },
 			},

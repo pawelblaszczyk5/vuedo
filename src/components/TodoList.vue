@@ -8,15 +8,7 @@
 </script>
 
 <template>
-	<ul
-		v-auto-animate
-		class="flex flex-col gap-3"
-		:class="{ '-my-2': todos.length === 0 }"
-	>
-		<TodoItem
-			v-for="todo in todos"
-			:key="todo.id"
-			:todo="todo"
-		/>
+	<ul v-auto-animate class="flex flex-col gap-3" :class="{ '-my-2': todos.length === 0 }">
+		<TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" />
 	</ul>
 </template>

@@ -6,15 +6,11 @@
 	const { removeTodo, changeTodoStatus } = useTodoStore();
 
 	const changeStatusButtonAriaLabel = $computed(
-		() =>
-			`Mark todo as ${
-				todo.status === 'completed' ? 'uncompleted' : 'completed'
-			}`,
+		() => `Mark todo as ${todo.status === 'completed' ? 'uncompleted' : 'completed'}`,
 	);
 
 	const handleStatusChange = () => {
-		const newTodoStatus: TodoStatus =
-			todo.status === 'completed' ? 'uncompleted' : 'completed';
+		const newTodoStatus: TodoStatus = todo.status === 'completed' ? 'uncompleted' : 'completed';
 
 		changeTodoStatus(todo.id, newTodoStatus);
 	};
@@ -49,10 +45,7 @@
 			class="w-8 text-emerald-400 ring-fuchsia-400 focus-visible:outline-none focus-visible:ring-2"
 			@click="handleRemove"
 		>
-			<i
-				aria-hidden
-				class="i-bi-x text-2xl"
-			/>
+			<i aria-hidden class="i-bi-x text-2xl" />
 		</button>
 	</li>
 </template>

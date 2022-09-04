@@ -56,8 +56,7 @@ export const useTodoStore = defineStore('counter', () => {
 		getTodosFromLocalStorage();
 		window.addEventListener('storage', getTodosFromLocalStorage);
 
-		return () =>
-			window.removeEventListener('storage', getTodosFromLocalStorage);
+		return () => window.removeEventListener('storage', getTodosFromLocalStorage);
 	});
 
 	const persistTodos = () => {
@@ -89,8 +88,7 @@ export const useTodoStore = defineStore('counter', () => {
 		persistTodos();
 	};
 
-	const changeSortMethod = (newSortMethod: SortMethod) =>
-		void (sortMethod = newSortMethod);
+	const changeSortMethod = (newSortMethod: SortMethod) => void (sortMethod = newSortMethod);
 
 	const changeFilterMethod = (newFilterMethod: FilterMethod) =>
 		void (filterMethod = newFilterMethod);
@@ -100,8 +98,7 @@ export const useTodoStore = defineStore('counter', () => {
 		persistTodos();
 	};
 
-	const isTodoExistingAlready = (todoText: TodoText) =>
-		todos.some(todo => todo.text === todoText);
+	const isTodoExistingAlready = (todoText: TodoText) => todos.some(todo => todo.text === todoText);
 
 	const todosToDisplay = $computed(() => {
 		const todosToDisplay = todos.filter(todo => {
@@ -112,13 +109,9 @@ export const useTodoStore = defineStore('counter', () => {
 
 		todosToDisplay.sort((firstTodo, secondTodo) => {
 			if (firstTodo.status !== secondTodo.status)
-				return (
-					Number(firstTodo.status === 'completed') -
-					Number(secondTodo.status === 'completed')
-				);
+				return Number(firstTodo.status === 'completed') - Number(secondTodo.status === 'completed');
 
-			if (sortMethod === 'asc')
-				return firstTodo.createdAt - secondTodo.createdAt;
+			if (sortMethod === 'asc') return firstTodo.createdAt - secondTodo.createdAt;
 
 			return secondTodo.createdAt - firstTodo.createdAt;
 		});
@@ -126,9 +119,7 @@ export const useTodoStore = defineStore('counter', () => {
 		return todosToDisplay;
 	});
 
-	const todosLeftCount = $computed(
-		() => todos.filter(todo => todo.status !== 'completed').length,
-	);
+	const todosLeftCount = $computed(() => todos.filter(todo => todo.status !== 'completed').length);
 
 	const todosCompletedCount = $computed(
 		() => todos.filter(todo => todo.status === 'completed').length,
